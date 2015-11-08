@@ -1,0 +1,24 @@
+Demo on how to sue IronWorker to compute the MD5 of a file.
+
+The dockerworker/ directory contains the "worker" code, in the shape
+of a Dockerfile.
+
+The Docker image is created and made public on dockerhub:
+
+```
+ $ docker build -t gario/irondemo .
+ $ docker push gario/irondemo
+```
+
+We then configure IronWorker. We created a project on IronWorker and
+downloaded the iron.json credentials. We create the worker (new_demo)
+using the docker image (ironcli_linux is the tool from IronWorker repo)
+
+```
+ $ ./ironcli_linux worker upload --name new_demo gario/irondemo
+```
+
+This solves the "server" side. For the client we need to pip install the dependencies:
+```
+ $ pip install --user iron-worker
+```
